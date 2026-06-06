@@ -1,0 +1,7 @@
+
+.vscode/settings.json
+# These are the ignore filetypes used over the creation of the entire 3 year project, not all filetypes will be seen in the CS544 Repo copy
+*.pem
+*.key
+*.keystore
+*.jks
