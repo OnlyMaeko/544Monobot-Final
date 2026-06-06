@@ -19,7 +19,7 @@ public class LobbyManager {
             this.status = LobbyStatus.WAITING;
         }
 
-        // Serializes this lobby as a compact JSON object. Example: {"name":"Room1","owner":"admin","status":"WAITING"}
+        // Serializes this lobby as a compact JSON object to be sent as a connection request for a different client joining (not the host)
         public String toJson() {
             return "{\"name\":\"" + escape(name) + "\""
                  + ",\"owner\":\"" + escape(owner) + "\""
@@ -31,8 +31,11 @@ public class LobbyManager {
         }
     }
 
+    // List for lobbies in the future we plan to support multiple but this is just the one
     private final List<Lobby> lobbies = new ArrayList<>();
 
+
+    // Adding lobby/to list, multiple methods if there is no name/owner (for guests in the future)
     public synchronized Lobby create(String name, String owner) {
         for (Lobby l : lobbies) {
             if (l.name.equalsIgnoreCase(name)) return null; 
@@ -49,7 +52,7 @@ public class LobbyManager {
         return null;
     }
 
-    //
+    //ToString/array
     public synchronized String toJsonArray() {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < lobbies.size(); i++) {
@@ -60,12 +63,13 @@ public class LobbyManager {
         return sb.toString();
     }
 
-    //
+    // Check for if a client has joined a lobby, boolean since it only runs 1 client
     public synchronized boolean isEmpty() {
         return lobbies.isEmpty();
     }
 
-    //
+    // Lobby awaiting game start (IDLING, this realistically will be a game state in the future but since game starts on 1 client connecting because
+    // both players play in one client not really used that much)
     public synchronized void markInProgress(String name) {
         Lobby l = find(name);
         if (l != null) l.status = LobbyStatus.IN_PROGRESS;

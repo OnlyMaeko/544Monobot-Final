@@ -7,12 +7,14 @@ Author: Marko Melishchuk
 Stateful Protocol Goals
 - Marko Melishchuk CS 544 Final Project: The goal of the assignment is to implement a custom protocol application layer protocol by writing a server and a client run over QUIC to send packets back and forth between to play Monopoly
 
-- Grading "not concerns" but guidance, the game application itself is buggy, there is quite a bit of logic that is hardcoded and doesn't reflect the application protocol, it is a result of the fact that this iteration of Monobot deviates quite heavily from the initial intention of the application (which is also unfinished). The initial application (ReadME can be found below), was to build a machine learning algorithm to 
+- Grading "not concerns" but guidance, the game application itself is buggy, there is quite a bit of logic that is hardcoded and doesn't reflect the application protocol, it is a result of the fact that this iteration of Monobot deviates quite heavily from the initial intention of the application (which is also unfinished). The initial application (ReadME can be found below), was to build a machine learning algorithm to train multiple bots to play against each other and the base for the interface was taken from there so a lot of this logic might be not 1to1 for a 2 player 1 client multiplayer (oringinally 2 bots played on the 1 client). Additional game files that are not used for the multiplayer can be found in additional files, these are out of scope game updates that we're currently working on.
+
+- Additional grading, I have commented everything that is relevant to the application protocol but I think the most important thing to keep in mind is the difference between the game and protocol. I have updated the following files with comments but files that are solely game files that were initially uncommented remain that way (general monopoly flow but most are just getters and setters and the logic occurs in Interface which is commented okayish): server.py, client.py, bridge.py, State.java, Server.java, Client.java, JSONseralizer.java, Interface.java, LobbyManager.java.
 
 - Please do not grade based on UI quality (unless you think its awesome), the original iteration wasn't coded with a UI in mind, thats on the 2027 to do list. The general logic from the ML algorithm and game state implementation was the base for the multiplayer implementation. Not everything has been transferred immediately to player options, I'm sure there are many things I have forgotten in this iteration that are very buggy and potentially session ending, they should not be a result of the PDUs or the DFA, simply a result of the poor (ish, im trying to be nicer to it) quality of the adapted multiplayer version. PDUs and DFA flow can be found in the following files: server.py, client.py, bridge.py, State.java, Server.java, Client.java. The rest of the java and class files are solely meant to implement the application and while there are some game state things that can be found in interface it is largely meant to only cover the actual interface and running of the local gamestate, not the transmission. The payload consists of a JSON file that contains the entire game state to be updated locally at the client. For reasons listed above the output in the client console may not exactly match the visual representation as the bot iteration was fully made for console interaction and the 
 
 
-( Prof Parkingson: If anything does not work for any reason please reach out to me at my drexel email, the instructions should work and since the bulk of the grade is a successful run and it has been tested on a fresh machine it should work but I should be available to troubleshoot any potential issues)
+(Prof Parkingson: If anything does not work for any reason please reach out to me at my drexel email, the instructions should work and since the bulk of the grade is a successful run and it has been tested on a fresh machine it should work but I should be available to troubleshoot any potential issues)
 
 - Implementation instructions: 
 
@@ -86,3 +88,5 @@ Machine Learning Goals:
 - Construct tournaments to build the decision making to a very advanced level of play.
 
 - Upon generating the “best” version create an interface to allow a user to play against the bot as well as set bots against one another.
+
+- To be updated more as the project progresses
