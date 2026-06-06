@@ -32,7 +32,7 @@ Stateful Protocol Goals
     sudo apt install git -y
 
     Git clone
-    git clone https://github.com/OnlyMaeko/MonoBot.git
+    git clone https://github.com/OnlyMaeko/544Monobot-Final.git
 
     Sudo Update Command (you can do this at any point and may be preferable to do at the start but it should be functional in this stage)
     sudo apt update
